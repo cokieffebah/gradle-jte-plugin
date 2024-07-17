@@ -1,8 +1,8 @@
 plugins{
     id 'com.gradle.plugin-publish' version '1.0.0'
     id 'groovy'
-    id 'org.jenkins-ci.jpi' version '0.43.0'
-    id "com.diffplug.gradle.spotless" version "3.29.0"
+    id 'org.jenkins-ci.jpi' version '0.50.0'
+    id 'com.diffplug.spotless' version '5.0.0'
     id 'codenarc'
 }
 
@@ -17,23 +17,26 @@ repositories {
     gradlePluginPortal()
 }
 
-version = '0.2.0'
+version = '0.3.1'
 group = "io.jenkins.tools"
 description = "Gradle plugin for packaging Jenkins Templating Engine library sources as a Jenkins plugin"
 
-pluginBundle{
+// pluginBundle{
+    
+    
+// }
+
+gradlePlugin {
     website = "https://github.com/jenkinsci/gradle-jte-plugin"
     vcsUrl = "https://github.com/jenkinsci/gradle-jte-plugin"
     description = project.description
-    tags = [ 'jenkins' ]
-}
 
-gradlePlugin {
     plugins {
         jte {
             id = 'io.jenkins.jte'
             implementationClass = 'org.jenkinsci.gradle.plugins.jte.JtePlugin'
             displayName = project.description
+            tags = [ 'jenkins' ]
         }
     }
 }
@@ -50,7 +53,7 @@ jenkinsPlugin {
 
 dependencies {
     implementation gradleApi()
-    implementation "org.jenkins-ci.tools:gradle-jpi-plugin:0.43.0"
+    implementation "org.jenkins-ci.tools:gradle-jpi-plugin:0.50.0"
     implementation 'org.codehaus.groovy:groovy-all:2.4.17'
 
     // spock dependencies
@@ -89,7 +92,7 @@ task codenarc {
 }
 
 
-    spotless{
+spotless{
     groovy{
         target = fileTree("src/main/groovy") + fileTree(dir: "src/main/resources", include: "**/*.groovy") + fileTree("src/test/groovy")
         trimTrailingWhitespace()

@@ -40,6 +40,7 @@ abstract class JteExtension{
         // set the default value of `jte.baseDirectory` to `libraries`
         extension.baseDirectory.convention(project.getLayout().getProjectDirectory().file(DEFAULT_BASE_DIRECTORY))
         extension.jteVersion.convention(DEFAULT_JTE_VERSION)
+        extension.useVersionCheck.convention(true)
         return extension
     }
 
@@ -69,5 +70,8 @@ abstract class JteExtension{
 
     @Optional
     abstract Property<String> getJteVersion()
+
+    @Optional
+    abstract Property<Boolean> getUseVersionCheck()
 
 }

@@ -28,6 +28,14 @@ jte{
     // the minimum version of JTE the generated plugin requires
     // must be greater than version 2.0
     jteVersion = '2.0'
+
+    // set to 'false' to disable the jte version check 
+    // when using this 'jte' gradle task.
+    // the jte version check makes an internet call and can not be used
+    // in airgapped environments, hence you can not use 'gradle jte' in
+    // airgapped environments
+    // default = true
+    useVersionCheck = true
 }
 
 // for a full list of configuration options, check out the
